@@ -1,0 +1,10 @@
+{
+  "bulbasaur": {
+    "items": {
+      "leftovers": 0.5
+    },
+    "moves": {
+      "tackle": 0.9
+    }
+  }
+}
