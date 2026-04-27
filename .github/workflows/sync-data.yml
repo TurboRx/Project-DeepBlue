@@ -1,0 +1,35 @@
+name: Sync Showdown Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Run every Sunday at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14' # As requested
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests # Add other data sync deps here if needed
+
+      - name: Run sync script
+        run: python scripts/sync_showdown_data.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: Sync latest Showdown and Smogon data"
+          title: "chore: Sync latest Showdown and Smogon data"
+          body: "Automated PR to keep Project DeepBlue's static data up to date."
+          branch: "auto-sync/data"
+          labels: "data, automated pr"
