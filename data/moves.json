@@ -1,0 +1,42 @@
+{
+  "tackle": {
+    "num": 33,
+    "accuracy": 100,
+    "basePower": 40,
+    "category": "Physical",
+    "name": "Tackle",
+    "pp": 35,
+    "priority": 0,
+    "type": "Normal"
+  },
+  "ember": {
+    "num": 52,
+    "accuracy": 100,
+    "basePower": 40,
+    "category": "Special",
+    "name": "Ember",
+    "pp": 25,
+    "priority": 0,
+    "type": "Fire"
+  },
+  "watergun": {
+    "num": 55,
+    "accuracy": 100,
+    "basePower": 40,
+    "category": "Special",
+    "name": "Water Gun",
+    "pp": 25,
+    "priority": 0,
+    "type": "Water"
+  },
+  "vinewhip": {
+    "num": 22,
+    "accuracy": 100,
+    "basePower": 45,
+    "category": "Physical",
+    "name": "Vine Whip",
+    "pp": 25,
+    "priority": 0,
+    "type": "Grass"
+  }
+}

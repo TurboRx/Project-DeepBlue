@@ -137,3 +137,10 @@ impl Default for BattleState {
         }
     }
 }
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Action {
+    Move(u8),    // Index of the move (0-3)
+    Switch(u8),  // Index of the pokemon to switch to (0-5)
+    None,        // Do nothing (e.g., waiting for the other player or fainted)
+}
