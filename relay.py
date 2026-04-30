@@ -16,7 +16,7 @@ class Relay:
             "weather": None,
             "terrain": None
         }
-        self.ws_url = "ws://sim.smogon.com:8000/showdown/websocket"
+        self.ws_url = "wss://sim.smogon.com:8000/showdown/websocket"
         self.battle_room = None
         self.player_id = "p1"
 
