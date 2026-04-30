@@ -101,3 +101,55 @@ impl Evaluator {
         0.0
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::state::{FieldHazards, PlayerState};
+
+    #[test]
+    fn test_evaluate_hazards_none() {
+        let evaluator = Evaluator::new();
+        let player = PlayerState::default();
+        assert_eq!(evaluator.evaluate_hazards(&player), 0.0);
+    }
+
+    #[test]
+    fn test_evaluate_hazards_single() {
+        let evaluator = Evaluator::new();
+        let mut player = PlayerState::default();
+
+        player.hazards = FieldHazards::STEALTH_ROCK;
+        assert_eq!(evaluator.evaluate_hazards(&player), 1.0);
+
+        player.hazards = FieldHazards::SPIKES_1;
+        assert_eq!(evaluator.evaluate_hazards(&player), 0.5);
+
+        player.hazards = FieldHazards::SPIKES_2;
+        assert_eq!(evaluator.evaluate_hazards(&player), 1.0);
+
+        player.hazards = FieldHazards::SPIKES_3;
+        assert_eq!(evaluator.evaluate_hazards(&player), 1.5);
+
+        player.hazards = FieldHazards::TOXIC_SPIKES_1;
+        assert_eq!(evaluator.evaluate_hazards(&player), 0.5);
+
+        player.hazards = FieldHazards::TOXIC_SPIKES_2;
+        assert_eq!(evaluator.evaluate_hazards(&player), 1.5);
+
+        player.hazards = FieldHazards::STICKY_WEB;
+        assert_eq!(evaluator.evaluate_hazards(&player), 1.0);
+    }
+
+    #[test]
+    fn test_evaluate_hazards_combination() {
+        let evaluator = Evaluator::new();
+        let mut player = PlayerState::default();
+
+        player.hazards = FieldHazards::STEALTH_ROCK | FieldHazards::SPIKES_3 | FieldHazards::STICKY_WEB;
+        assert_eq!(evaluator.evaluate_hazards(&player), 3.5);
+
+        player.hazards = FieldHazards::TOXIC_SPIKES_2 | FieldHazards::SPIKES_1;
+        assert_eq!(evaluator.evaluate_hazards(&player), 2.0);
+    }
+}
