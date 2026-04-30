@@ -2,7 +2,6 @@ import os
 import requests
 import chompjs
 import json
-import re
 
 DATA_DIR = "data"
 
